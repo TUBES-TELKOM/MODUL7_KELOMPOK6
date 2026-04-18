@@ -11,6 +11,10 @@ namespace TP_MODUL7_KELOMPOK6
         public static void Main(string[] args)
         {
             WatchList wl = new WatchList();
+            Film fl = new Film();
+
+            fl.ReadJson();
+            Console.WriteLine("==================\n");
             wl.ReadJson();
 
         }
