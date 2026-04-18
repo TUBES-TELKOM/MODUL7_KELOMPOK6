@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace MODUL7_KELOMPOK6
 {
@@ -26,20 +27,23 @@ namespace MODUL7_KELOMPOK6
             this.isWatched = isWatched;
         }
 
-        //ReadJson
+        //ReadJson ambil dari data json jurnal7_1_103022400110.json
         public static void ReadJSON(string json)
         {
-            // Deserialize JSON string to FilmFavorit_103022400110 object
-            FilmFavorit_103022400110 film = System.Text.Json.JsonSerializer.Deserialize<FilmFavorit_103022400110>(json);
-            // Print the deserialized object
-            Console.WriteLine("Title: " + film.Title);
-            Console.WriteLine("Director: " + film.Director);
-            Console.WriteLine("Year: " + film.Year);
-            Console.WriteLine("Genre: " + film.Genre);
-            Console.WriteLine("Rating: " + film.Rating);
-            Console.WriteLine("Duration (minutes): " + film.durationMinutes);
-            Console.WriteLine("Watched: " + (film.isWatched ? "Yes" : "No"));
-        }
+            // JSON 1
+            string path1 = @"..\..\..\lib\jurnal7_1_103022400110.json";
+            // Membaca isi file JSON
+            string json1 = File.ReadAllText(path1);
 
+            // Deserialize JSON string to List<FilmFavorit_103022400110> object
+            var data1 = JsonSerializer.Deserialize<List<FilmFavorit_103022400110>>(json1);
+
+            // Print the deserialized object
+            Console.WriteLine("Data Film Favorit:");
+            foreach (var film in data1)
+            {
+                Console.WriteLine($"{film.Title} ({film.Year} - {film.Rating})");
+            }
+        }
     }
 }
