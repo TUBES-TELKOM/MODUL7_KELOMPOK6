@@ -12,11 +12,13 @@ namespace TP_MODUL7_KELOMPOK6
         {
             WatchList wl = new WatchList();
             Film fl = new Film();
+            GenreDict gd = new GenreDict();
 
             fl.ReadJson();
             Console.WriteLine("==================\n");
             wl.ReadJson();
-
+            Console.WriteLine("==================\n");
+            gd.ReadJson();
         }
     }
 }
