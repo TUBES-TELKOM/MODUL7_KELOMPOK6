@@ -1,0 +1,9 @@
+{
+    "title": "FILM A",
+    "director": "DIRECTOR A",
+    "year": "2026",
+    "genre": "GENRE A",
+    "rating": 5,
+    "durationMinutes": 50,
+    "isWatched": TRUE
+}
