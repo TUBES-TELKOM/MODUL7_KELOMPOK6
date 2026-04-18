@@ -5,5 +5,5 @@
     "genre": "GENRE A",
     "rating": 5,
     "durationMinutes": 50,
-    "isWatched": TRUE
+    "isWatched": true
 }
