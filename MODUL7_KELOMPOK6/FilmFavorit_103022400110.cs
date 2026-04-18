@@ -5,29 +5,17 @@ using System.Text.Json;
 
 namespace MODUL7_KELOMPOK6
 {
-    internal class FilmFavorit_103022400110
+    public class FilmFavorit_103022400110
     {
-        public string Title { get; set; }
-        public string Director { get; set; }
-        public string Year { get; set; }
-        public string Genre { get; set; }
-        public float Rating { get; set; }
+        public string title { get; set; }
+        public string director { get; set; }
+        public string year { get; set; }
+        public string genre { get; set; }
+        public float rating { get; set; }
         public float durationMinutes { get; set; }
         public bool isWatched { get; set; }
 
-        //konstruktor
-        public FilmFavorit_103022400110(string title, string director, string year, string genre, float rating, float durationMinutes, bool isWatched)
-        {
-            Title = title;
-            Director = director;
-            Year = year;
-            Genre = genre;
-            Rating = rating;
-            this.durationMinutes = durationMinutes;
-            this.isWatched = isWatched;
-        }
-
-        //ReadJson ambil dari data json jurnal7_1_103022400110.json
+        // Reading JSON from file and deserializing it into an object
         public static void ReadJSON(string json)
         {
             // JSON 1
@@ -35,15 +23,17 @@ namespace MODUL7_KELOMPOK6
             // Membaca isi file JSON
             string json1 = File.ReadAllText(path1);
 
-            // Deserialize JSON string to List<FilmFavorit_103022400110> object
-            var data1 = JsonSerializer.Deserialize<List<FilmFavorit_103022400110>>(json1);
+            var data1 = JsonSerializer.Deserialize<FilmFavorit_103022400110>(json1);
 
             // Print the deserialized object
-            Console.WriteLine("Data Film Favorit:");
-            foreach (var film in data1)
-            {
-                Console.WriteLine($"{film.Title} ({film.Year} - {film.Rating})");
-            }
+            Console.WriteLine("Title: " + data1.title);
+            Console.WriteLine("Director: " + data1.director);
+            Console.WriteLine("Year: " + data1.year);
+            Console.WriteLine("Genre: " + data1.genre);
+            Console.WriteLine("Rating: " + data1.rating);
+            Console.WriteLine("Duration (minutes): " + data1.durationMinutes);
+            Console.WriteLine("Watched: " + data1.isWatched);
+
         }
     }
 }

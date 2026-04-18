@@ -5,49 +5,37 @@ using System.Text.Json;
 
 namespace MODUL7_KELOMPOK6
 {
-    internal class Watchlist_103022400110
+    public class Movie
     {
-        public string WatchlistName { get; set; }
-        public string CreatedBy { get; set; }
-        public List<FilmFavorit_103022400110> Movies { get; set; }
-        public Watchlist_103022400110(string watchlistName, string createdBy, List<FilmFavorit_103022400110> movies)
-        {
-            WatchlistName = watchlistName;
-            CreatedBy = createdBy;
-            Movies = movies;
-        }
+        public string id { get; set; }
+        public string title { get; set; }
+        public int year { get; set; }
+        public double rating { get; set; }
+    }
 
-        /*Pada method tersebut, lakukan print hasil deserialisasi dari object yang dibuat dengan 
-format output sebagai berikut.
-Watchlist Name : Weekend Marathon
-Created By : Kelompok 07
-Movies : 
-F101 The Matrix (1999 - 8,7)
-F102 Parasite (2019 - 8,5)
-F103 Avengers: Endgame (2019 - 8,4)
-*/
-        //Json
-        public static void ReadJSON(string json)
+    public class Watchlist_103022400110
+    {
+        public string watchlistName { get; set; } = string.Empty;
+        public string createdBy { get; set; } = string.Empty;
+        public List<Movie> movies { get; set; } = new List<Movie>();
+
+        public static void ReadJSON()
         {
             // JSON 1
             string path1 = @"..\..\..\lib\jurnal7_2_103022400110.json";
             // Membaca isi file JSON
             string json1 = File.ReadAllText(path1);
 
-            // Deserialize JSON string to List<Watchlist> object
-            var data1 = JsonSerializer.Deserialize<List<Watchlist_103022400110>>(json1);
+            // Deserialize JSON string to Watchlist_103022400110 object
+            var data1 = JsonSerializer.Deserialize<Watchlist_103022400110>(json1) ?? new Watchlist_103022400110();
 
-            // Print the deserialized object
-            foreach (var watchlist in data1)
+            Console.WriteLine("Watchlist Name : " + data1.watchlistName);
+            Console.WriteLine("Created By : " + data1.createdBy);
+            Console.WriteLine("Movies : ");
+
+            foreach (var movie in data1.movies)
             {
-                Console.WriteLine($"Watchlist Name: {watchlist.WatchlistName}");
-                Console.WriteLine($"Created By: {watchlist.CreatedBy}");
-                Console.WriteLine("Movies:");
-                foreach (var movie in watchlist.Movies)
-                {
-                    Console.WriteLine($"{movie.Title} ({movie.Year} - {movie.Rating})");
-                }
-                Console.WriteLine();
+                Console.WriteLine(movie.id + " " + movie.title + " (" + movie.year + " - " + movie.rating + ")");
             }
         }
     }
